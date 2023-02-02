@@ -16,7 +16,7 @@
 import api from "../api/api";
 
 import BannerCarousel from "../components/home/BannerCarousel.vue";
-import ProductsGallery from "../components/home/ProductsGallery.vue";
+import ProductsGallery from "../components/shared/ProductsGallery.vue";
 export default {
   name: "StoreHome",
   components: {
