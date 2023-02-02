@@ -8,6 +8,13 @@
         :key="item.id"
         class="gbp-container-item"
       >
+        <v-btn
+          icon="mdi-heart"
+          color="white"
+          variant="plain"
+          class="ci-wishlist-btn"
+          size="small"
+        ></v-btn>
         <v-carousel
           :show-arrows="false"
           cycle
@@ -91,12 +98,19 @@ export default {
 .carousel-item-price-container {
   display: inline-block;
   background-color: #f2f0f0;
-  left: 1px;
+  left: 0;
   top: 0;
   position: absolute;
   padding: 4px 4px 0 4px;
   border-radius: 0 0 6px 0;
   min-width: 100px;
+}
+.ci-wishlist-btn {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
 }
 .ci-buy-btn {
   margin: 24px auto;

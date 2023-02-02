@@ -36,7 +36,9 @@ export default {
   methods: {
     getProducts() {
       api
-        .get("/products?populate=images")
+        .get(
+          "/products?pagination[start]=0&pagination[limit]=9&populate=images"
+        )
         .then((res) => {
           for (var each of res.data.data) {
             this.productsHighlight.push(each);
