@@ -3,7 +3,7 @@
     <v-carousel
       height="400"
       hide-delimiter-background
-      show-arrows="hover"
+      :show-arrows="false"
       cycle
     >
       <v-carousel-item v-for="(slide, i) in slides" :key="i">
