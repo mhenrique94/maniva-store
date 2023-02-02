@@ -14,7 +14,9 @@
     "@strapi/plugin-users-permissions": "4.6.0",
     "@strapi/strapi": "4.6.0",
     "better-sqlite3": "7.4.6",
-    "material-design-icons-iconfont": "^6.7.0"
+    "material-design-icons-iconfont": "^6.7.0",
+    "strapi-plugin-netlify-deployments": "^2.0.0",
+    "strapi-plugin-vercel-deploy": "^1.4.0"
   },
   "author": {
     "name": "A Strapi developer"
