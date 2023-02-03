@@ -28,13 +28,49 @@
     <div class="carousel-item-price-container">
       R$<strong>{{ item.attributes.price }}</strong>
     </div>
-    <v-btn variant="text" block class="ci-buy-btn">Comprar</v-btn>
+    <div class="carousel-item-sizes-container">
+      <div class="cisc-labels">Tamanhos</div>
+      <div>
+        <v-btn-toggle class="size-btn-group" borderless mandatory>
+          <v-btn
+            class="cisc-labels size-btn"
+            size="x-small"
+            flat
+            density="compact"
+            v-for="(each, i) in item.attributes.sizes.data"
+            :key="i"
+            @click="selectSize(each.attributes.size)"
+            >{{ each.attributes.size }}</v-btn
+          >
+        </v-btn-toggle>
+      </div>
+    </div>
+    <v-btn
+      variant="text"
+      block
+      class="ci-buy-btn"
+      @click="$emits('order', selectedProduct)"
+      >Comprar</v-btn
+    >
   </v-card>
 </template>
 <script>
 export default {
   name: "ProductCard",
   props: ["item", "path"],
+  data() {
+    return {
+      selectedProduct: {
+        id: this.item.id,
+        size: null,
+      },
+    };
+  },
+  methods: {
+    selectSize(gotSize) {
+      this.selectedProduct.size = gotSize;
+    },
+  },
 };
 </script>
 <style scoped>
@@ -75,11 +111,27 @@ export default {
   right: 0;
   z-index: 1;
 }
+.carousel-item-sizes-container {
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  margin: 16px auto;
+  gap: 0;
+}
+.cisc-labels {
+  color: #3c3939;
+}
+.size-btn-group {
+  height: auto;
+}
+.cisc-size-btn {
+  height: 32px;
+}
 .ci-buy-btn {
   margin: 24px auto;
   /* background-color: #f2f0f0; */
   font-weight: 600;
-  border: solid 1px #d1cccc;
+  border: solid 1px #f0f0f0;
   border-right-width: 0;
   border-left-width: 0;
   border-radius: 0;

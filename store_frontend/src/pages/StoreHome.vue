@@ -30,15 +30,13 @@ export default {
       loading: true,
     };
   },
-  created() {
+  mounted() {
     this.getProducts();
   },
   methods: {
     getProducts() {
       api
-        .get(
-          "/products?pagination[start]=0&pagination[limit]=9&populate=images"
-        )
+        .get("/products?pagination[start]=0&pagination[limit]=9&populate=*")
         .then((res) => {
           for (var each of res.data.data) {
             this.productsHighlight.push(each);
@@ -52,9 +50,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.gallery-container {
-  /* height: 40vh; */
-}
-</style>
