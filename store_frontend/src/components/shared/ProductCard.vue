@@ -49,7 +49,7 @@
       variant="text"
       block
       class="ci-buy-btn"
-      @click="$emits('order', selectedProduct)"
+      @click="$emit('order', selectedProduct)"
       >Comprar</v-btn
     >
   </v-card>

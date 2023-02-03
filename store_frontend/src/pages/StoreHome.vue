@@ -2,13 +2,16 @@
   <div class="hello">
     <BannerCarousel />
     <div class="gallery-container" v-if="!loading">
-      <ProductsGallery :title="title" :products="productsHighlight" />
+      <ProductsGallery
+        :title="title"
+        :products="productsHighlight"
+        @order="$emit('order', selectedProduct)"
+      />
     </div>
-    <v-progress-linear
-      v-if="loading"
-      indeterminate
-      color="cyan"
-    ></v-progress-linear>
+    <div v-if="loading" class="loading-progress">
+      <v-progress-linear indeterminate color="grey"></v-progress-linear>
+      <h3>Carregando produtos incríveis!</h3>
+    </div>
   </div>
 </template>
 
@@ -34,19 +37,20 @@ export default {
     this.getProducts();
   },
   methods: {
-    getProducts() {
-      api
-        .get("/products?pagination[start]=0&pagination[limit]=9&populate=*")
-        .then((res) => {
-          for (var each of res.data.data) {
-            this.productsHighlight.push(each);
-          }
-          this.loading = false;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    async getProducts() {
+      const response = await api.getProducts().then((result) => result.data);
+      for (var each of response) {
+        this.productsHighlight.push(each);
+      }
+      setTimeout(() => {
+        this.loading = false;
+      }, 2000);
     },
   },
 };
 </script>
+<style scoped>
+.loading-progress {
+  margin: 80px auto;
+}
+</style>

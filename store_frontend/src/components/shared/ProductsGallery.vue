@@ -8,6 +8,7 @@
         :key="item.id"
         :item="item"
         :path="path"
+        @order="$emit('order', selectedProduct)"
       />
     </v-container>
   </v-container>
