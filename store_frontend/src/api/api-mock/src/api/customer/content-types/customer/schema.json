@@ -33,8 +33,11 @@
       "type": "string",
       "required": true
     },
-    "customer_id": {
-      "type": "integer"
+    "wishlist": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wishlist.wishlist",
+      "mappedBy": "customer"
     }
   }
 }

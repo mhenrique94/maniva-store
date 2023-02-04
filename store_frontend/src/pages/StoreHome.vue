@@ -31,20 +31,30 @@ export default {
       title: "Últimas novidades",
       productsHighlight: [],
       loading: true,
+      wishlist_items: [],
+      wishlist_count: null,
     };
   },
   mounted() {
     this.getProducts();
+    this.getWishlist();
   },
   methods: {
     async getProducts() {
-      const response = await api.getProducts().then((result) => result.data);
+      const response = await api.getProducts().then((result) => result);
       for (var each of response) {
         this.productsHighlight.push(each);
       }
       setTimeout(() => {
         this.loading = false;
       }, 2000);
+    },
+    async getWishlist() {
+      const response = await api.getWishlist();
+      for (var each of response.data.data[0].attributes.products.data) {
+        this.wishlist_items.push(each);
+      }
+      this.wishlist_count = this.wishlist_items.length;
     },
   },
 };

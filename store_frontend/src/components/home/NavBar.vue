@@ -11,24 +11,48 @@
       </v-btn>
     </div>
 
-    <v-btn icon>
-      <v-icon>mdi-heart</v-icon>
-    </v-btn>
+    <router-link to="/wishlist">
+      <v-badge
+        dot
+        color="grey"
+        bordered
+        offset-x="10"
+        offset-y="10"
+        :model-value="wishlist"
+      >
+        <v-btn icon>
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>
+      </v-badge>
+    </router-link>
 
     <router-link to="/checkout">
-      <v-btn icon>
-        <v-icon>mdi-cart</v-icon>
-      </v-btn>
+      <v-badge
+        dot
+        color="grey"
+        bordered
+        offset-x="10"
+        offset-y="10"
+        :model-value="cart"
+      >
+        <v-btn icon>
+          <v-icon>mdi-cart</v-icon>
+        </v-btn>
+      </v-badge>
     </router-link>
   </v-toolbar>
 </template>
 <script>
 export default {
   name: "NavBar",
-  data: () => ({
-    searchText: null,
-    searchBoxClosed: true,
-  }),
+  data() {
+    return {
+      searchText: null,
+      searchBoxClosed: true,
+      cart: true,
+      wishlist: false,
+    };
+  },
 };
 </script>
 <style scoped>

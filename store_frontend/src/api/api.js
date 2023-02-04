@@ -5,13 +5,18 @@ const api = axios.create({
 });
 
 function getProducts() {
-  debugger; // eslint-disable-line no-debugger
   const data = api.get(
     "/products?pagination[start]=0&pagination[limit]=9&populate=*"
   );
 
-  const response = data.then((res) => res.data);
+  const response = data.then((res) => res.data.data);
   return response;
 }
 
-export default { api, getProducts };
+function getWishlist() {
+  // eslint-disable-next-line no-debugger
+  const data = api.get("/user-wishlist?populate=*");
+  const response = data.then((res) => res);
+  return response;
+}
+export default { api, getProducts, getWishlist };
