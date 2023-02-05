@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <WishlistDialog
-      :wishlist_items="wishlist_items"
       :dialogStatus="dialogStatus"
       @toggle-dialog="$emit('toggle-dialog')"
     />
@@ -26,6 +25,7 @@ import api from "../api/api";
 import BannerCarousel from "../components/home/BannerCarousel.vue";
 import ProductsGallery from "../components/shared/ProductsGallery.vue";
 import WishlistDialog from "../components/shared/WishlistDialog.vue";
+
 export default {
   name: "StoreHome",
   components: {
@@ -39,13 +39,10 @@ export default {
       title: "Últimas novidades",
       productsHighlight: [],
       loading: true,
-      wishlist_items: [],
-      wishlist_count: null,
     };
   },
   mounted() {
     this.getProducts();
-    this.getWishlist();
   },
   methods: {
     async getProducts() {
@@ -56,14 +53,6 @@ export default {
       setTimeout(() => {
         this.loading = false;
       }, 2000);
-    },
-    async getWishlist() {
-      const response = await api.getWishlist();
-      for (var each of response.data.data[0].attributes.products.data) {
-        this.wishlist_items.push(each);
-      }
-      this.wishlist_count = this.wishlist_items.length;
-      this.$emit("wishlist_ready", this.wishlist_count);
     },
   },
 };

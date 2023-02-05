@@ -17,7 +17,7 @@
       bordered
       offset-x="10"
       offset-y="10"
-      :model-value="wishlist"
+      :model-value="wishlist.wishlist_count"
       @click="$emit('wishlist-clicked')"
     >
       <v-btn icon>
@@ -42,11 +42,12 @@
   </v-toolbar>
 </template>
 <script>
+import { useWishlistStore } from "../../stores/wishlistStore";
 export default {
   name: "NavBar",
-  props: ["wishlist"],
   data() {
     return {
+      wishlist: useWishlistStore(),
       searchText: null,
       searchBoxClosed: true,
       cart: true,

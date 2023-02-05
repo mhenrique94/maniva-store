@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title>Lista de desejos</v-card-title>
       <v-list>
-        <v-list-item v-for="item in wishlist_items" :key="item.id">
+        <v-list-item v-for="item in wishlist.wishlist_items" :key="item.id">
           <v-list-item-content class="item">
             <div class="item-details">
               <v-list-item-title>{{ item.attributes.title }}</v-list-item-title>
@@ -22,11 +22,12 @@
   </v-dialog>
 </template>
 <script>
+import { useWishlistStore } from "../../stores/wishlistStore";
 export default {
   name: "WishlistDialog",
-  props: ["wishlist_items", "dialogStatus"],
   data() {
     return {
+      wishlist: useWishlistStore(),
       dialog: false,
     };
   },

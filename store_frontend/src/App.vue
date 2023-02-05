@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar :wishlist="wishlist" @wishlist-clicked="toggleDialog" />
+    <NavBar @wishlist-clicked="toggleDialog" />
     <v-toolbar density="compact">
       <v-list nav class="category-navigation">
         <v-list-item>Combos</v-list-item>
@@ -13,7 +13,6 @@
       </v-list>
     </v-toolbar>
     <router-view
-      @wishlist_ready="wishlist_ready"
       :dialogStatus="dialogStatus"
       @toggle-dialog="toggleDialog"
     ></router-view>
@@ -22,6 +21,8 @@
 
 <script>
 import NavBar from "./components/home/NavBar.vue";
+import { useWishlistStore } from "./stores/wishlistStore.js";
+
 export default {
   name: "App",
   components: {
@@ -29,14 +30,12 @@ export default {
   },
   data() {
     return {
-      wishlist: null,
+      wishlist: useWishlistStore(),
       dialogStatus: false,
     };
   },
+
   methods: {
-    wishlist_ready(wishlist) {
-      this.wishlist = wishlist;
-    },
     toggleDialog() {
       this.dialogStatus = this.dialogStatus ? false : true;
     },
