@@ -19,4 +19,10 @@ function getWishlist() {
   const response = data.then((res) => res);
   return response;
 }
-export default { api, getProducts, getWishlist };
+function updateWishlist() {
+  // replace with logic to confirm if already exists and apply switch depending of the case
+  const data = api.post("/user-wishlist");
+  const response = data.then((res) => res);
+  return response;
+}
+export default { api, getProducts, getWishlist, updateWishlist };

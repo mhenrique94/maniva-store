@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar />
+    <NavBar :wishlist="wishlist" @wishlist-clicked="toggleDialog" />
     <v-toolbar density="compact">
       <v-list nav class="category-navigation">
         <v-list-item>Combos</v-list-item>
@@ -12,7 +12,11 @@
         <v-list-item>Outlet</v-list-item>
       </v-list>
     </v-toolbar>
-    <router-view></router-view>
+    <router-view
+      @wishlist_ready="wishlist_ready"
+      :dialogStatus="dialogStatus"
+      @toggle-dialog="toggleDialog"
+    ></router-view>
   </div>
 </template>
 
@@ -22,6 +26,20 @@ export default {
   name: "App",
   components: {
     NavBar,
+  },
+  data() {
+    return {
+      wishlist: null,
+      dialogStatus: false,
+    };
+  },
+  methods: {
+    wishlist_ready(wishlist) {
+      this.wishlist = wishlist;
+    },
+    toggleDialog() {
+      this.dialogStatus = this.dialogStatus ? false : true;
+    },
   },
 };
 </script>

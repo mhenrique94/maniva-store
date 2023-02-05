@@ -1,5 +1,10 @@
 <template>
   <div class="hello">
+    <WishlistDialog
+      :wishlist_items="wishlist_items"
+      :dialogStatus="dialogStatus"
+      @toggle-dialog="$emit('toggle-dialog')"
+    />
     <BannerCarousel />
     <div class="gallery-container" v-if="!loading">
       <ProductsGallery
@@ -20,12 +25,15 @@ import api from "../api/api";
 
 import BannerCarousel from "../components/home/BannerCarousel.vue";
 import ProductsGallery from "../components/shared/ProductsGallery.vue";
+import WishlistDialog from "../components/shared/WishlistDialog.vue";
 export default {
   name: "StoreHome",
   components: {
     BannerCarousel,
     ProductsGallery,
+    WishlistDialog,
   },
+  props: ["dialogStatus"],
   data() {
     return {
       title: "Últimas novidades",
@@ -55,6 +63,7 @@ export default {
         this.wishlist_items.push(each);
       }
       this.wishlist_count = this.wishlist_items.length;
+      this.$emit("wishlist_ready", this.wishlist_count);
     },
   },
 };
