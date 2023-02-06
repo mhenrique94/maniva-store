@@ -6,6 +6,7 @@
       variant="plain"
       class="ci-wishlist-btn"
       size="small"
+      @click="updateWishlist(item)"
     ></v-btn>
     <v-carousel
       :show-arrows="false"
@@ -55,6 +56,7 @@
   </v-card>
 </template>
 <script>
+import { useWishlistStore } from "../../stores/wishlistStore";
 export default {
   name: "ProductCard",
   props: ["item", "path"],
@@ -64,11 +66,15 @@ export default {
         id: this.item.id,
         size: null,
       },
+      wishlist: useWishlistStore(),
     };
   },
   methods: {
     selectSize(gotSize) {
       this.selectedProduct.size = gotSize;
+    },
+    updateWishlist(item) {
+      this.wishlist.updateWishlist(item);
     },
   },
 };

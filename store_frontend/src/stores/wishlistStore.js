@@ -5,11 +5,17 @@ export const useWishlistStore = defineStore("wishlist", {
     return { wishlist_items: [], wishlist_count: 0, dialog: false };
   },
   actions: {
-    increment(value = 1) {
-      this.count += value;
-    },
     toggleDialog() {
       this.dialog = this.dialog ? false : true;
+    },
+    async updateWishlist(produto) {
+      let result = this.wishlist_items.find(function (item) {
+        return item.id === produto.id;
+      });
+      if (result == undefined) {
+        this.wishlist_items.push(produto);
+        api.updateWishlist(this.wishlist_items);
+      }
     },
   },
   getters: {
@@ -19,7 +25,6 @@ export const useWishlistStore = defineStore("wishlist", {
         state.wishlist_items.push(each);
       }
       state.wishlist_count = state.wishlist_items.length;
-      return state;
     },
   },
 });
