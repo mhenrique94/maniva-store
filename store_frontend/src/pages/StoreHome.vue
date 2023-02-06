@@ -1,9 +1,6 @@
 <template>
   <div class="hello">
-    <WishlistDialog
-      :dialogStatus="dialogStatus"
-      @toggle-dialog="$emit('toggle-dialog')"
-    />
+    <WishlistDialog />
     <BannerCarousel />
     <div class="gallery-container" v-if="!loading">
       <ProductsGallery

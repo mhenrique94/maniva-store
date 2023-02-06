@@ -18,7 +18,7 @@
       offset-x="10"
       offset-y="10"
       :model-value="wishlist.wishlist_count"
-      @click="$emit('wishlist-clicked')"
+      @click="wishlist.toggleDialog"
     >
       <v-btn icon>
         <v-icon>mdi-heart</v-icon>

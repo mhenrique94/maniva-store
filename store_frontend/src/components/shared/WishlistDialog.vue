@@ -1,5 +1,5 @@
 <template>
-  <v-dialog transition="dialog-bottom-transition" v-model="dialog">
+  <v-dialog transition="dialog-bottom-transition" v-model="wishlist.dialog">
     <v-card>
       <v-card-title>Lista de desejos</v-card-title>
       <v-list>
@@ -23,21 +23,13 @@
 </template>
 <script>
 import { useWishlistStore } from "../../stores/wishlistStore";
+
 export default {
   name: "WishlistDialog",
   data() {
     return {
       wishlist: useWishlistStore(),
-      dialog: false,
     };
-  },
-  watch: {
-    dialogStatus() {
-      this.dialog = this.dialogStatus;
-    },
-    dialog() {
-      this.$emit("toggle-dialog");
-    },
   },
 };
 </script>
