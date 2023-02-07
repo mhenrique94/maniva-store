@@ -10,8 +10,8 @@ export const useProductsStore = defineStore("products", {
   },
   getters: {
     async getProducts() {
-      const response = await api.getProducts().then((result) => result);
-      for (var each of response) {
+      const product_response = await api.getProducts().then((result) => result);
+      for (let each of product_response) {
         this.productsHighlight.push(each);
       }
       this.loading = false;

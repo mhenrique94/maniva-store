@@ -6,13 +6,13 @@
         <v-list-item v-for="item in wishlist.wishlist_items" :key="item.id">
           <v-list-item-content class="item">
             <div class="item-details">
-              <v-list-item-title>{{ item.attributes.title }}</v-list-item-title>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
               <v-list-item-subtitle>{{
-                item.attributes.brand
+                item.brand
               }}</v-list-item-subtitle>
             </div>
             <div class="item-action">
-              <div>R${{ item.attributes.price }}</div>
+              <div>R${{ item.price }}</div>
               <v-btn>COMPRAR</v-btn>
             </div>
           </v-list-item-content>

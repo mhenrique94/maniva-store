@@ -12,16 +12,21 @@ function getProducts() {
 
 function getWishlist() {
   // eslint-disable-next-line no-debugger
-  const data = api.get("/user-wishlist?populate=*");
+  const data = api.get("/wishlist");
   const response = data.then((res) => res);
   return response;
 }
 function updateWishlist(products) {
-  const data = api.put(`/user-wishlist/1`, {
+  const data = api.put(`/wishlist`, {
     data: {
       products: products,
     },
   });
   console.log(data);
 }
-export default { api, getProducts, getWishlist, updateWishlist };
+function getImages() {
+  const data = api.get("/images");
+
+  return data.then((res) => res.data);
+}
+export default { api, getProducts, getWishlist, updateWishlist, getImages };

@@ -7,4 +7,6 @@ urlpatterns = [
     path('', StoreHome.as_view(), name='homepage'),
     re_path(r'^api/products$', views.products),
     re_path(r'^api/products/(?P<pk>[0-9]+)$', views.product_detail),
+    re_path(r'^api/images/$', views.images),
+    re_path(r'^api/wishlist/$', views.wishlist),
 ]

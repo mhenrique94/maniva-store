@@ -21,7 +21,7 @@ export const useWishlistStore = defineStore("wishlist", {
   getters: {
     getWishlist: async (state) => {
       const response = await api.getWishlist();
-      for (var each of response.data.data[0].attributes.products.data) {
+      for (let each of response.data[0].products) {
         state.wishlist_items.push(each);
       }
       state.wishlist_count = state.wishlist_items.length;

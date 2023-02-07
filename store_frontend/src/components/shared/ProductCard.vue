@@ -17,7 +17,7 @@
       <v-carousel-item
         v-for="(each, i) in item.images"
         :key="i"
-        :src="`${each.images}`"
+        :src="`${each.image}`"
         cover
         class="gbpci-carousel-item"
       ></v-carousel-item>

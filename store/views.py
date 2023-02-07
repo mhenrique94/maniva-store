@@ -4,8 +4,8 @@ from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.decorators import api_view
-from store.models import Product
-from store.serializers import ProductSerializer
+from store.models import Product, Image, Wishlist
+from store.serializers import ProductSerializer, ImageSerializer, WishlistSerializer
 
 # Create your views here.
 
@@ -36,3 +36,18 @@ def products(request):
 
         products_serializer = ProductSerializer(products, many=True)
         return JsonResponse(products_serializer.data, safe=False)
+
+@api_view(['GET'])
+def images(request):
+    if request.method == 'GET':
+        images = Image.objects.all()
+        image_serializer = ImageSerializer(images, many=True)
+        return JsonResponse(image_serializer.data, safe=False)
+
+
+@api_view(['GET', 'POST', 'PUT'])
+def wishlist(request):
+    if request.method == 'GET':
+        wishlist = Wishlist.objects.all()
+        wishlist_serializer = WishlistSerializer(wishlist, many=True)
+        return JsonResponse(wishlist_serializer.data, safe=False)

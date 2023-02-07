@@ -32,7 +32,7 @@ export default {
   methods: {
     getPath() {
       // todo: bolar um jeito de apontar para um base_url que leva em conta se está ou não em prod
-      this.path = "http://localhost:1337";
+      this.path = "./";
     },
   },
 };
