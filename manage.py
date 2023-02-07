@@ -15,6 +15,11 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
+    from django.core.management.commands.runserver import Command as runserver
+
+    runserver.default_addr = "0.0.0.0"
+
     execute_from_command_line(sys.argv)
 
 
