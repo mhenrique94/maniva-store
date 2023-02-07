@@ -7,9 +7,7 @@
           <v-list-item-content class="item">
             <div class="item-details">
               <v-list-item-title>{{ item.title }}</v-list-item-title>
-              <v-list-item-subtitle>{{
-                item.brand
-              }}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{ item.brand }}</v-list-item-subtitle>
             </div>
             <div class="item-action">
               <div>R${{ item.price }}</div>

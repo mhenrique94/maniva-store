@@ -7,6 +7,7 @@ from rest_framework.decorators import api_view
 from store.models import Product, Image, Wishlist
 from store.serializers import ProductSerializer, ImageSerializer, WishlistSerializer
 
+
 # Create your views here.
 
 
@@ -37,6 +38,7 @@ def products(request):
         products_serializer = ProductSerializer(products, many=True)
         return JsonResponse(products_serializer.data, safe=False)
 
+
 @api_view(['GET'])
 def images(request):
     if request.method == 'GET':
@@ -45,9 +47,18 @@ def images(request):
         return JsonResponse(image_serializer.data, safe=False)
 
 
-@api_view(['GET', 'POST', 'PUT'])
-def wishlist(request):
+@api_view(['GET', 'PUT'])
+def wishlist(request, pk):
     if request.method == 'GET':
         wishlist = Wishlist.objects.all()
         wishlist_serializer = WishlistSerializer(wishlist, many=True)
         return JsonResponse(wishlist_serializer.data, safe=False)
+
+    elif request.method == 'PUT':
+        wishlist = Wishlist.objects.get(pk=pk)
+        wishlist_data = JSONParser().parse(request)
+        wishlist_serializer = WishlistSerializer(wishlist, data=wishlist_data)
+        if wishlist_serializer.is_valid():
+            wishlist_serializer.save()
+            return JsonResponse(wishlist_serializer.data)
+        return JsonResponse(wishlist_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

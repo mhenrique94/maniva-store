@@ -11,13 +11,14 @@ function getProducts() {
 }
 
 function getWishlist() {
-  // eslint-disable-next-line no-debugger
-  const data = api.get("/wishlist");
+  // replace pk to reflect user-related wishlist
+  const data = api.get("/wishlist/2");
   const response = data.then((res) => res);
   return response;
 }
 function updateWishlist(products) {
-  const data = api.put(`/wishlist`, {
+  // replace pk to reflect user-related wishlist
+  const data = api.put(`/wishlist/2`, {
     data: {
       products: products,
     },
