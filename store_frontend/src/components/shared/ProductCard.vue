@@ -15,19 +15,19 @@
       hide-delimiter-background
     >
       <v-carousel-item
-        v-for="(each, i) in item.attributes.images.data"
+        v-for="(each, i) in item.images"
         :key="i"
-        :src="`${path}${each.attributes.url}`"
+        :src="`${each.images}`"
         cover
         class="gbpci-carousel-item"
       ></v-carousel-item>
     </v-carousel>
     <v-card-title class="gbpc-item-title">{{
-      item.attributes.title.toLowerCase()
+      item.title.toLowerCase()
     }}</v-card-title>
-    <v-card-subtitle>{{ item.attributes.brand }}</v-card-subtitle>
+    <v-card-subtitle>{{ item.brand }}</v-card-subtitle>
     <div class="carousel-item-price-container">
-      R$<strong>{{ item.attributes.price }}</strong>
+      R$<strong>{{ item.price }}</strong>
     </div>
     <div class="carousel-item-sizes-container">
       <div class="cisc-labels">Tamanhos</div>
@@ -38,10 +38,10 @@
             size="x-small"
             flat
             density="compact"
-            v-for="(each, i) in item.attributes.sizes.data"
+            v-for="(each, i) of item.sizes"
             :key="i"
-            @click="selectSize(each.attributes.size)"
-            >{{ each.attributes.size }}</v-btn
+            @click="selectSize(each.size)"
+            >{{ each.size }}</v-btn
           >
         </v-btn-toggle>
       </div>

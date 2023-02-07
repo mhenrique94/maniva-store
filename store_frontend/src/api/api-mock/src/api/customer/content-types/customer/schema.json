@@ -38,6 +38,12 @@
       "relation": "oneToOne",
       "target": "api::wishlist.wishlist",
       "mappedBy": "customer"
+    },
+    "cart": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cart.cart",
+      "mappedBy": "customer"
     }
   }
 }

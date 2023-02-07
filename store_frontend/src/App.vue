@@ -21,7 +21,7 @@
 
 <script>
 import NavBar from "./components/home/NavBar.vue";
-import { useWishlistStore } from "./stores/wishlistStore.js";
+// import { useWishlistStore } from "./stores/wishlistStore.js";
 import { useProductsStore } from "./stores/productsStore";
 export default {
   name: "App",
@@ -30,13 +30,13 @@ export default {
   },
   data() {
     return {
-      wishlist: useWishlistStore(),
+      // wishlist: useWishlistStore(),
       products: useProductsStore(),
       dialogStatus: false,
     };
   },
   mounted() {
-    this.wishlist.getWishlist;
+    // this.wishlist.getWishlist;
     this.products.getProducts;
   },
 

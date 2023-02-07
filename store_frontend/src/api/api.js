@@ -1,16 +1,13 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:1337/api",
+  baseURL: " http://127.0.0.1:8000/api",
 });
 
 function getProducts() {
-  const data = api.get(
-    "/products?pagination[start]=0&pagination[limit]=9&populate=*"
-  );
+  const data = api.get("/products");
 
-  const response = data.then((res) => res.data.data);
-  return response;
+  return data.then((res) => res.data);
 }
 
 function getWishlist() {
