@@ -1,6 +1,13 @@
 <template>
   <v-container class="gallery-body">
-    <h3>{{ title }}</h3>
+    <h3 v-if="products.length">{{ title }}</h3>
+    <div v-if="!products.length" class="nothing-to-show">
+      <v-icon>mdi-alert</v-icon>
+      <h3>Não temos nada para exibir aqui</h3>
+      <p class="text-medium-emphasis">
+        Tente procurar por outros termos ou categorias
+      </p>
+    </div>
 
     <v-container class="gb-products-container">
       <ProductCard
@@ -51,5 +58,12 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+.nothing-to-show {
+  background-color: whitesmoke;
+  max-width: 400px;
+  margin: 32px auto;
+  border-radius: 8px;
+  padding: 32px;
 }
 </style>

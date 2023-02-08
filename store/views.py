@@ -28,8 +28,7 @@ def product_detail(request, pk):
 
 @api_view(['GET'])
 def products(request):
-    # GET list of products
-
+    products = Product.objects.all()
     if request.query_params:
         category = Category.objects.filter(
             name=request.query_params['category'])
@@ -42,10 +41,7 @@ def products(request):
         # title = request.GET.get('title', None)
         # if title is not None:
         #     products = products.filter(title__icontains=title)
-        else:
-            products = Product.objects.all()
-    else:
-        products = Product.objects.all()
+
     products_serializer = ProductSerializer(products, many=True)
     return JsonResponse(products_serializer.data, safe=False)
 

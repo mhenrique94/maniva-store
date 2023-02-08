@@ -11,7 +11,7 @@ export const useProductsStore = defineStore("products", {
   },
   getters: {
     async getProducts() {
-      console.log(this.category, "do productstore");
+      this.productsHighlight = [];
       const product_response = await api
         .getProducts(this.category)
         .then((result) => result);

@@ -3,13 +3,9 @@
     <NavBar @wishlist-clicked="toggleDialog" />
     <v-toolbar density="compact">
       <v-list nav class="category-navigation">
-        <v-list-item>Combos</v-list-item>
-        <v-list-item>Roupas Masculinas</v-list-item>
-        <v-list-item>Roupas Femininas</v-list-item>
-        <v-list-item>Calçados</v-list-item>
-        <v-list-item>Bolsas</v-list-item>
-        <v-list-item>Camisetas</v-list-item>
-        <v-list-item>Outlet</v-list-item>
+        <v-list-item v-for="(item, idx) in nav_items" :key="idx">
+          <v-btn @click="updateCategory(item.title)"> {{ item.title }}</v-btn>
+        </v-list-item>
       </v-list>
     </v-toolbar>
     <WishlistDialog />
@@ -33,6 +29,16 @@ export default {
   },
   data() {
     return {
+      nav_items: [
+        { title: "Tudo" },
+        { title: "Outlet" },
+        { title: "Combos" },
+        { title: "Roupas Masculinas" },
+        { title: "Roupas Femininas" },
+        { title: "Calçados" },
+        { title: "Bolsas" },
+        { title: "Camisetas" },
+      ],
       wishlist: useWishlistStore(),
       products: useProductsStore(),
       dialogStatus: false,
@@ -44,6 +50,9 @@ export default {
   },
 
   methods: {
+    updateCategory(category) {
+      this.products.category = category;
+    },
     toggleDialog() {
       this.dialogStatus = this.dialogStatus ? false : true;
     },
@@ -56,7 +65,9 @@ export default {
   text-decoration: none;
   color: black;
 }
-
+.active {
+  background: black;
+}
 a:visited {
   color: black;
 }
