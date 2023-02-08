@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <WishlistDialog />
     <BannerCarousel />
     <div class="gallery-container" v-if="!loading">
       <ProductsGallery
@@ -21,14 +20,12 @@ import { useProductsStore } from "../stores/productsStore";
 
 import BannerCarousel from "../components/home/BannerCarousel.vue";
 import ProductsGallery from "../components/shared/ProductsGallery.vue";
-import WishlistDialog from "../components/shared/WishlistDialog.vue";
 
 export default {
   name: "StoreHome",
   components: {
     BannerCarousel,
     ProductsGallery,
-    WishlistDialog,
   },
   data() {
     return {

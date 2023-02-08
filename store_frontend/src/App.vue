@@ -12,6 +12,7 @@
         <v-list-item>Outlet</v-list-item>
       </v-list>
     </v-toolbar>
+    <WishlistDialog />
     <router-view
       :dialogStatus="dialogStatus"
       @toggle-dialog="toggleDialog"
@@ -23,10 +24,12 @@
 import NavBar from "./components/home/NavBar.vue";
 import { useWishlistStore } from "./stores/wishlistStore.js";
 import { useProductsStore } from "./stores/productsStore";
+import WishlistDialog from "./components/shared/WishlistDialog.vue";
 export default {
   name: "App",
   components: {
     NavBar,
+    WishlistDialog,
   },
   data() {
     return {

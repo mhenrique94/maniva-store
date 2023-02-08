@@ -29,16 +29,21 @@ def product_detail(request, pk):
 @api_view(['GET'])
 def products(request):
     # GET list of products
-    category = Category.objects.filter(name=request.query_params['category'])
-    if category:
-        category_id = category[0].id
-        products_ids = Product.categories.through.objects.filter(
-            category_id=category_id).values_list('product_id')
-        products = Product.objects.filter(id__in=products_ids)
+
+    if request.query_params:
+        category = Category.objects.filter(
+            name=request.query_params['category'])
+        if category:
+            category_id = category[0].id
+            products_ids = Product.categories.through.objects.filter(
+                category_id=category_id).values_list('product_id')
+            products = products.filter(id__in=products_ids)
 
         # title = request.GET.get('title', None)
         # if title is not None:
         #     products = products.filter(title__icontains=title)
+        else:
+            products = Product.objects.all()
     else:
         products = Product.objects.all()
     products_serializer = ProductSerializer(products, many=True)
