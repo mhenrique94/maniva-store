@@ -6,11 +6,15 @@ export const useProductsStore = defineStore("products", {
     return {
       productsHighlight: [],
       loading: true,
+      category: "Bolsas",
     };
   },
   getters: {
     async getProducts() {
-      const product_response = await api.getProducts().then((result) => result);
+      console.log(this.category, "do productstore");
+      const product_response = await api
+        .getProducts(this.category)
+        .then((result) => result);
       for (let each of product_response) {
         this.productsHighlight.push(each);
       }

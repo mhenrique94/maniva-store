@@ -4,7 +4,7 @@ from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.decorators import api_view
-from store.models import Product, Image, Wishlist
+from store.models import *
 from store.serializers import ProductSerializer, ImageSerializer, WishlistSerializer
 
 
@@ -29,14 +29,20 @@ def product_detail(request, pk):
 @api_view(['GET'])
 def products(request):
     # GET list of products
-    if request.method == 'GET':
-        products = Product.objects.all()
-        title = request.GET.get('title', None)
-        if title is not None:
-            products = products.filter(title__icontains=title)
+    category = Category.objects.filter(name=request.query_params['category'])
+    if category:
+        category_id = category[0].id
+        products_ids = Product.categories.through.objects.filter(
+            category_id=category_id).values_list('product_id')
+        products = Product.objects.filter(id__in=products_ids)
 
-        products_serializer = ProductSerializer(products, many=True)
-        return JsonResponse(products_serializer.data, safe=False)
+        # title = request.GET.get('title', None)
+        # if title is not None:
+        #     products = products.filter(title__icontains=title)
+    else:
+        products = Product.objects.all()
+    products_serializer = ProductSerializer(products, many=True)
+    return JsonResponse(products_serializer.data, safe=False)
 
 
 @api_view(['GET'])

@@ -1,11 +1,16 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: " http://127.0.0.1:8000/api",
+  baseURL: " http://localhost:8000/api",
 });
 
-function getProducts() {
-  const data = api.get("/products");
+function getProducts(category) {
+  console.log("roxo", category);
+  const data = api.get(`/products`, {
+    params: {
+      category: category,
+    },
+  });
 
   return data.then((res) => res.data);
 }
