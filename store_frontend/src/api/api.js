@@ -22,8 +22,6 @@ function getWishlist() {
 }
 function updateWishlist(products) {
   // const wishlist_json = JSON.stringify(products);
-  // eslint-disable-next-line no-debugger
-  debugger;
   // replace pk to reflect user-related wishlist
   const data = api.patch(`/wishlist/2`, {
     products: products,

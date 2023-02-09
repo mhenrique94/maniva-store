@@ -68,11 +68,15 @@ def wishlist(request, pk):
         products_ids = []
         for each in wishlist_data:
             products_ids.append(each['id'])
+        de_para = wishlist.products.values_list('id', flat=True)
+        for id in de_para:
+            if not id in products_ids:
+                wishlist.products.remove(id)
         prod_to_save = Product.objects.filter(id__in=products_ids)
         for prod in prod_to_save:
             prod.wishlist_set.add(wishlist)
-        wishlist_serializer = WishlistSerializer(wishlist, data=wishlist_data)
-        if wishlist_serializer.is_valid():
-            wishlist_serializer.save()
-            return JsonResponse(wishlist_serializer.data)
+        # wishlist_serializer = WishlistSerializer(wishlist, data=wishlist_data)
+        # if wishlist_serializer.is_valid():
+        #     wishlist_serializer.save()
+        #     return JsonResponse(wishlist_serializer.data)
         return JsonResponse(wishlist_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
