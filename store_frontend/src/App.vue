@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBar @wishlist-clicked="toggleDialog" />
+    <NavBar />
     <v-toolbar density="compact">
       <v-list nav class="category-navigation">
         <v-list-item v-for="(item, idx) in nav_items" :key="idx">
@@ -9,6 +9,7 @@
       </v-list>
     </v-toolbar>
     <WishlistDialog />
+    <CheckoutCart />
     <router-view
       :dialogStatus="dialogStatus"
       @toggle-dialog="toggleDialog"
@@ -21,11 +22,13 @@ import NavBar from "./components/home/NavBar.vue";
 import { useWishlistStore } from "./stores/wishlistStore.js";
 import { useProductsStore } from "./stores/productsStore";
 import WishlistDialog from "./components/shared/WishlistDialog.vue";
+import CheckoutCart from "./components/shared/CheckoutCart.vue";
 export default {
   name: "App",
   components: {
     NavBar,
     WishlistDialog,
+    CheckoutCart,
   },
   data() {
     return {
@@ -42,6 +45,9 @@ export default {
       wishlist: useWishlistStore(),
       products: useProductsStore(),
       dialogStatus: false,
+      actual_path: {
+        fullPath: null,
+      },
     };
   },
   mounted() {

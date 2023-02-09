@@ -4,7 +4,8 @@ from django.db import models
 
 # Create your models here.
 class Customer(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200)
 
@@ -81,5 +82,13 @@ class Campaign(models.Model):
 
 class Wishlist(models.Model):
     products = models.ManyToManyField(Product)
-    customer = models.OneToOneField(Customer, null=True, blank=True, on_delete=models.CASCADE)
+    customer = models.OneToOneField(
+        Customer, null=True, blank=True, on_delete=models.CASCADE)
+    added_date = models.DateTimeField(auto_now_add=True)
+
+
+class Cart(models.Model):
+    products = models.ManyToManyField(Product)
+    customer = models.OneToOneField(
+        Customer, null=True, blank=True, on_delete=models.CASCADE)
     added_date = models.DateTimeField(auto_now_add=True)

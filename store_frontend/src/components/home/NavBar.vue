@@ -25,34 +25,34 @@
       </v-btn>
     </v-badge>
 
-    <router-link to="/checkout">
-      <v-badge
-        dot
-        color="grey"
-        bordered
-        offset-x="10"
-        offset-y="10"
-        :model-value="cart"
-      >
-        <v-btn icon>
-          <v-icon>mdi-cart</v-icon>
-        </v-btn>
-      </v-badge>
-    </router-link>
+    <v-badge
+      dot
+      color="grey"
+      bordered
+      offset-x="10"
+      offset-y="10"
+      :model-value="cart.cart_count"
+      @click="cart.toggleDialog"
+    >
+      <v-btn icon>
+        <v-icon>mdi-cart</v-icon>
+      </v-btn>
+    </v-badge>
   </v-toolbar>
 </template>
 <script>
 import { useWishlistStore } from "../../stores/wishlistStore";
 import { useProductsStore } from "../../stores/productsStore";
+import { useCartStore } from "../../stores/cartStore";
 export default {
   name: "NavBar",
   data() {
     return {
       wishlist: useWishlistStore(),
       products: useProductsStore(),
+      cart: useCartStore(),
       searchText: null,
       searchBoxClosed: true,
-      cart: true,
     };
   },
   methods: {

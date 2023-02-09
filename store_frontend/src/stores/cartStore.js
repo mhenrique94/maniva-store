@@ -2,9 +2,12 @@ import { defineStore } from "pinia";
 import api from "../api/api";
 export const useCartStore = defineStore("cart", {
   state: () => {
-    return { cart_items: [], cart_count: 0 };
+    return { cart_items: [], cart_count: 0, dialog: false };
   },
   actions: {
+    toggleDialog() {
+      this.dialog = this.dialog ? false : true;
+    },
     async updateCart(produto) {
       let result = this.cart_items.find(function (item) {
         return item.id === produto.id;
