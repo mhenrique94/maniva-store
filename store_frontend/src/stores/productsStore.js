@@ -5,20 +5,21 @@ export const useProductsStore = defineStore("products", {
   state: () => {
     return {
       productsHighlight: [],
-      loading: true,
+      loading: null,
       category: null,
     };
   },
   getters: {
     async getProducts() {
-      this.productsHighlight = [];
       const product_response = await api
         .getProducts(this.category)
         .then((result) => result);
+      this.productsHighlight = [];
       for (let each of product_response) {
+        each.active = false;
         this.productsHighlight.push(each);
       }
-      this.loading = false;
+      setTimeout((this.loading = false), 5000);
     },
   },
 });

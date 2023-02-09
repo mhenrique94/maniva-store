@@ -51,6 +51,7 @@ export default {
 
   methods: {
     updateCategory(category) {
+      this.products.loading = true;
       this.products.category = category;
     },
     toggleDialog() {
@@ -85,6 +86,5 @@ a:active {
   display: flex;
   width: 100%;
   justify-content: center;
-  gap: 16px;
 }
 </style>

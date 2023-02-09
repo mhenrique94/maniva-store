@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http.response import JsonResponse
@@ -54,16 +55,22 @@ def images(request):
         return JsonResponse(image_serializer.data, safe=False)
 
 
-@api_view(['GET', 'PUT'])
+@api_view(['GET', 'PATCH'])
 def wishlist(request, pk):
     if request.method == 'GET':
         wishlist = Wishlist.objects.all()
         wishlist_serializer = WishlistSerializer(wishlist, many=True)
         return JsonResponse(wishlist_serializer.data, safe=False)
 
-    elif request.method == 'PUT':
+    elif request.method == 'PATCH':
         wishlist = Wishlist.objects.get(pk=pk)
-        wishlist_data = JSONParser().parse(request)
+        wishlist_data = request.data['products']
+        products_ids = []
+        for each in wishlist_data:
+            products_ids.append(each['id'])
+        prod_to_save = Product.objects.filter(id__in=products_ids)
+        for prod in prod_to_save:
+            prod.wishlist_set.add(wishlist)
         wishlist_serializer = WishlistSerializer(wishlist, data=wishlist_data)
         if wishlist_serializer.is_valid():
             wishlist_serializer.save()

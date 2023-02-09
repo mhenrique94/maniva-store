@@ -1,13 +1,15 @@
 <template>
   <v-card class="gbp-container-item">
     <v-btn
-      icon="mdi-heart"
-      color="white"
       variant="plain"
       class="ci-wishlist-btn"
       size="small"
       @click="updateWishlist(item)"
-    ></v-btn>
+    >
+      <v-icon plain :color="item.active ? 'red' : 'black'"
+        >mdi-heart</v-icon
+      ></v-btn
+    >
     <v-carousel
       :show-arrows="false"
       cycle
@@ -74,6 +76,7 @@ export default {
       this.selectedProduct.size = gotSize;
     },
     updateWishlist(item) {
+      item.active ? (item.active = false) : (item.active = true);
       this.wishlist.updateWishlist(item);
     },
   },

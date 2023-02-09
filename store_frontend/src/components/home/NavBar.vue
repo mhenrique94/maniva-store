@@ -1,6 +1,6 @@
 <template>
   <v-toolbar dense color="transparent">
-    <router-link to="/">
+    <router-link to="/" @click="takeMeHome">
       <h1 class="nav-brand">maniva <strong class="bold">store</strong></h1>
     </router-link>
 
@@ -43,15 +43,22 @@
 </template>
 <script>
 import { useWishlistStore } from "../../stores/wishlistStore";
+import { useProductsStore } from "../../stores/productsStore";
 export default {
   name: "NavBar",
   data() {
     return {
       wishlist: useWishlistStore(),
+      products: useProductsStore(),
       searchText: null,
       searchBoxClosed: true,
       cart: true,
     };
+  },
+  methods: {
+    takeMeHome() {
+      this.products.category = null;
+    },
   },
 };
 </script>

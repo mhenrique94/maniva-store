@@ -18,7 +18,6 @@
   </div>
 </template>
 <script>
-// import images from "../../assets/img/pexels1";
 export default {
   name: "BannerCarousel",
   data() {

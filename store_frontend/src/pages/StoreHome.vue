@@ -1,16 +1,13 @@
 <template>
   <div class="hello">
-    <BannerCarousel />
-    <div class="gallery-container" v-if="!loading">
+    <BannerCarousel v-if="!products.category" />
+
+    <div class="gallery-container">
       <ProductsGallery
         :title="title"
         :products="products.productsHighlight"
         @order="$emit('order', selectedProduct)"
       />
-    </div>
-    <div v-if="products.loading" class="loading-progress">
-      <v-progress-linear indeterminate color="grey"></v-progress-linear>
-      <h3>Carregando produtos incríveis!</h3>
     </div>
   </div>
 </template>
@@ -27,6 +24,9 @@ export default {
     BannerCarousel,
     ProductsGallery,
   },
+  created() {
+    this.products.category = null;
+  },
   data() {
     return {
       title: "Últimas novidades",
@@ -35,8 +35,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.loading-progress {
-  margin: 80px auto;
-}
-</style>

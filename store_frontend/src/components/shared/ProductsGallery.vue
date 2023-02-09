@@ -1,26 +1,39 @@
 <template>
-  <v-container class="gallery-body">
-    <h3 v-if="products.length">{{ title }}</h3>
-    <div v-if="!products.length" class="nothing-to-show">
-      <v-icon>mdi-alert</v-icon>
-      <h3>Não temos nada para exibir aqui</h3>
-      <p class="text-medium-emphasis">
-        Tente procurar por outros termos ou categorias
-      </p>
-    </div>
+  <div>
+    <div v-if="!product_states.category" class="blank-container"></div>
+    <v-container class="gallery-body">
+      <div v-if="product_states.loading" class="loading-progress">
+        <v-progress-linear indeterminate color="grey"></v-progress-linear>
+        <h3>Carregando produtos incríveis!</h3>
+      </div>
+      <div>
+        <h3 v-if="products.length && !product_states.loading">{{ title }}</h3>
+        <div
+          v-if="!products.length && !product_states.loading"
+          class="nothing-to-show"
+        >
+          <v-icon>mdi-alert</v-icon>
+          <h3>Não temos nada para exibir aqui</h3>
+          <p class="text-medium-emphasis">
+            Tente procurar por outros termos ou categorias
+          </p>
+        </div>
+      </div>
 
-    <v-container class="gb-products-container">
-      <ProductCard
-        v-for="item in products"
-        :key="item.id"
-        :item="item"
-        :path="path"
-        @order="$emit('order', selectedProduct)"
-      />
+      <v-container class="gb-products-container" v-if="!product_states.loading">
+        <ProductCard
+          v-for="item in products"
+          :key="item.id"
+          :item="item"
+          :path="path"
+          @order="$emit('order', selectedProduct)"
+        />
+      </v-container>
     </v-container>
-  </v-container>
+  </div>
 </template>
 <script>
+import { useProductsStore } from "../../stores/productsStore";
 import ProductCard from "./ProductCard.vue";
 export default {
   name: "ProductsGallery",
@@ -31,6 +44,7 @@ export default {
   data() {
     return {
       path: null,
+      product_states: useProductsStore(),
     };
   },
   mounted() {
@@ -47,7 +61,7 @@ export default {
 >
 <style scoped>
 .gallery-body {
-  margin: 48px auto;
+  margin: auto;
   height: 100%;
   border-radius: 8px;
   border: solid 1px #dbdbdb;
@@ -65,5 +79,12 @@ export default {
   margin: 32px auto;
   border-radius: 8px;
   padding: 32px;
+}
+.loading-progress {
+  margin: 80px auto;
+}
+.blank-container {
+  background-color: aqua;
+  margin: 48px auto;
 }
 </style>

@@ -10,12 +10,17 @@ export const useWishlistStore = defineStore("wishlist", {
     },
     async updateWishlist(produto) {
       let result = this.wishlist_items.find(function (item) {
+        console.log(produto);
         return item.id === produto.id;
       });
       if (result == undefined) {
         this.wishlist_items.push(produto);
-        api.updateWishlist(this.wishlist_items);
+      } else {
+        this.wishlist_items = this.wishlist_items.filter(
+          (each) => each.id != produto.id
+        );
       }
+      api.updateWishlist(this.wishlist_items);
     },
   },
   getters: {

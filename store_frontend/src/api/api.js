@@ -1,11 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: " http://localhost:8000/api",
+  baseURL: "http://localhost:8000/api",
 });
 
 function getProducts(category) {
-  console.log("roxo", category);
   const data = api.get(`/products`, {
     params: {
       category: category,
@@ -22,11 +21,13 @@ function getWishlist() {
   return response;
 }
 function updateWishlist(products) {
+  // const wishlist_json = JSON.stringify(products);
+  // eslint-disable-next-line no-debugger
+  debugger;
   // replace pk to reflect user-related wishlist
-  const data = api.put(`/wishlist/2`, {
-    data: {
-      products: products,
-    },
+  const data = api.patch(`/wishlist/2`, {
+    products: products,
+    // products: wishlist_json,
   });
   console.log(data);
 }
