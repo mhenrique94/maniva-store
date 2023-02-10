@@ -46,6 +46,12 @@ export default {
   width: 30%;
   object-fit: contain;
   height: auto;
+  filter: grayscale(1);
+}
+.banner-image:hover {
+  filter: grayscale(0);
+  cursor: pointer;
+  transition: 500ms;
 }
 @media only screen and (max-width: 400px) {
   .banner-container {

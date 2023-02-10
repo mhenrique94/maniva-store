@@ -2,7 +2,6 @@ import json
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http.response import JsonResponse
-from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.decorators import api_view
 from store.models import *
@@ -75,8 +74,8 @@ def wishlist(request, pk):
         prod_to_save = Product.objects.filter(id__in=products_ids)
         for prod in prod_to_save:
             prod.wishlist_set.add(wishlist)
-        # wishlist_serializer = WishlistSerializer(wishlist, data=wishlist_data)
-        # if wishlist_serializer.is_valid():
-        #     wishlist_serializer.save()
-        #     return JsonResponse(wishlist_serializer.data)
-        return JsonResponse(wishlist_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        wishlist_serializer = WishlistSerializer(wishlist, data=wishlist_data)
+    # if wishlist_serializer.is_valid():
+    #     wishlist_serializer.save()
+        return JsonResponse(wishlist_serializer.data)
+    # return JsonResponse(wishlist_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

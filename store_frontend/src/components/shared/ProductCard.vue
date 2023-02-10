@@ -152,7 +152,6 @@ export default {
   height: 32px;
 }
 .ci-buy-btn {
-  margin: 24px auto;
   /* background-color: #f2f0f0; */
   font-weight: 600;
   border: solid 1px #f0f0f0;
