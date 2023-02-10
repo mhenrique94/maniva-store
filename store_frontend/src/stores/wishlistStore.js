@@ -35,9 +35,6 @@ export const useWishlistStore = defineStore("wishlist", {
         state.wishlist_items.push(each);
       }
       state.wishlist_count = state.wishlist_items.length;
-      state.wishlist_count > 0
-        ? (state.has_itens = true)
-        : (state.has_itens = false);
     },
   },
 });

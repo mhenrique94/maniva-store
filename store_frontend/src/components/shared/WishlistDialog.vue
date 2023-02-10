@@ -24,6 +24,13 @@
           </div>
         </v-list-item>
       </v-list>
+      <div v-if="!wishlist.wishlist_items.length" class="nothing-to-show">
+        <v-icon>mdi-alert</v-icon>
+        <h3>Não temos nada para exibir aqui</h3>
+        <p class="text-medium-emphasis">
+          O que está esperando para adicionar um dos nossos produtos incríveis?
+        </p>
+      </div>
     </v-card>
   </v-dialog>
 </template>
@@ -64,5 +71,17 @@ export default {
   align-items: center;
   justify-content: flex-end;
   gap: 32px;
+}
+.nothing-to-show {
+  background-color: whitesmoke;
+  max-width: 400px;
+  margin: 32px auto;
+  border-radius: 8px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 </style>

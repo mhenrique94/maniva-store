@@ -57,6 +57,7 @@ export default {
   methods: {
     updateCart(item) {
       this.cart.updateCart(item);
+      this.cart.dialog = false;
     },
   },
 };

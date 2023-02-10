@@ -100,7 +100,6 @@ export default {
     },
     detail_it() {
       this.productStore.detailed_product = this.item;
-      console.log(this.productStore.detailed_product);
       this.productStore.details_dialog = true;
     },
   },

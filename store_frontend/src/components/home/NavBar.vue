@@ -11,33 +11,13 @@
       </v-btn>
     </div>
 
-    <v-badge
-      dot
-      color="grey"
-      bordered
-      offset-x="10"
-      offset-y="10"
-      :model-value="wishlist.has_items"
-      @click="wishlist.toggleDialog"
-    >
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-    </v-badge>
+    <v-btn @click="wishlist.toggleDialog" icon>
+      <v-icon>mdi-heart</v-icon>
+    </v-btn>
 
-    <v-badge
-      dot
-      color="grey"
-      bordered
-      offset-x="10"
-      offset-y="10"
-      :model-value="cart.has_items"
-      @click="cart.toggleDialog"
-    >
-      <v-btn icon>
-        <v-icon>mdi-cart</v-icon>
-      </v-btn>
-    </v-badge>
+    <v-btn @click="cart.toggleDialog" icon>
+      <v-icon>mdi-cart</v-icon>
+    </v-btn>
   </v-toolbar>
 </template>
 <script>

@@ -93,6 +93,7 @@ export default {
       this.productStore.detailed_product.image =
         this.productStore.detailed_product.images[0];
       this.cartStore.updateCart(this.productStore.detailed_product);
+      this.productStore.details_dialog = false;
     },
   },
 };
