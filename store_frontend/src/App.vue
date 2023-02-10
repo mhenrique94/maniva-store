@@ -4,7 +4,9 @@
     <v-toolbar density="compact">
       <v-list nav class="category-navigation">
         <v-list-item v-for="(item, idx) in nav_items" :key="idx">
-          <v-btn @click="updateCategory(item.title)"> {{ item.title }}</v-btn>
+          <v-btn class="cn-btn" @click="updateCategory(item.title)">
+            {{ item.title }}</v-btn
+          >
         </v-list-item>
       </v-list>
     </v-toolbar>
@@ -12,21 +14,24 @@
     <CheckoutCart class="modal" />
     <v-dialog transition="dialog-bottom-transition" v-model="cart.size_modal">
       <v-card>
-        <v-card-content class="size-modal">
+        <div class="size-modal">
           <v-icon>mdi-alert</v-icon>
           <h3>Selecione o tamanho do produto</h3>
-        </v-card-content>
+        </div>
       </v-card>
     </v-dialog>
     <router-view
       :dialogStatus="dialogStatus"
       @toggle-dialog="toggleDialog"
     ></router-view>
+    <v-divider />
+    <FooTer />
   </div>
 </template>
 
 <script>
 import NavBar from "./components/home/NavBar.vue";
+import FooTer from "./components/home/FooTer.vue";
 import { useWishlistStore } from "./stores/wishlistStore.js";
 import { useProductsStore } from "./stores/productsStore";
 import { useCartStore } from "./stores/cartStore";
@@ -38,6 +43,7 @@ export default {
     NavBar,
     WishlistDialog,
     CheckoutCart,
+    FooTer,
   },
   data() {
     return {
@@ -102,6 +108,9 @@ a:active {
   display: flex;
   width: 100%;
   justify-content: center;
+}
+.cn-btn {
+  padding: 0 !important;
 }
 .size-modal {
   padding: 32px;

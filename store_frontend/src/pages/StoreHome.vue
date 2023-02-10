@@ -11,7 +11,7 @@
         />
       </div>
     </div>
-    <CampaignCarousel class="campaign-carousel" />
+    <CampaignCarousel class="campaign-carousel" v-if="!products.loading" />
   </div>
 </template>
 

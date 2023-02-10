@@ -23,13 +23,6 @@ export default {
   name: "BannerCarousel",
   data() {
     return {
-      colors: [
-        "indigo",
-        "warning",
-        "pink darken-2",
-        "red lighten-1",
-        "deep-purple accent-4",
-      ],
       slides: [
         {
           text: "Calçados com 30% OFF",

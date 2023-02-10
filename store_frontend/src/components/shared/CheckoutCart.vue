@@ -4,7 +4,7 @@
       <v-card-title>Carrinho de compras</v-card-title>
       <v-list>
         <v-list-item v-for="item in cart.cart_items" :key="item.id">
-          <v-list-item-content class="item">
+          <div class="item">
             <div>
               <img :src="item.image.image" class="product_thumbnail" />
             </div>
@@ -23,7 +23,7 @@
             <v-btn variant="plain" @click="updateCart(item)"
               ><v-icon>mdi-close-circle</v-icon></v-btn
             >
-          </v-list-item-content>
+          </div>
           <v-divider class="divider" v-if="cart.cart_items.length > 1" />
         </v-list-item>
       </v-list>

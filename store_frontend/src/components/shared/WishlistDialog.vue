@@ -4,7 +4,7 @@
       <v-card-title>Lista de desejos</v-card-title>
       <v-list>
         <v-list-item v-for="item in wishlist.wishlist_items" :key="item.id">
-          <v-list-item-content class="item">
+          <div class="item">
             <div class="item-details">
               <v-list-item-title
                 ><strong>{{ item.title }}</strong></v-list-item-title
@@ -21,7 +21,7 @@
               </div>
               <v-btn @click="updateCart(item)">COMPRAR</v-btn>
             </div>
-          </v-list-item-content>
+          </div>
         </v-list-item>
       </v-list>
     </v-card>
