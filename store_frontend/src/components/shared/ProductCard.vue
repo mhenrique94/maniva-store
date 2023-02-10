@@ -80,7 +80,6 @@ export default {
       wishlist: useWishlistStore(),
       cartStore: useCartStore(),
       productStore: useProductsStore(),
-      details_loaded: false,
     };
   },
   methods: {
@@ -97,15 +96,11 @@ export default {
         return;
       }
       this.cartStore.updateCart(selectedProduct);
+      this.productStore.details_dialog = false;
     },
     detail_it() {
       this.productStore.detailed_product = this.item;
       console.log(this.productStore.detailed_product);
-      this.details_loaded = true;
-    },
-  },
-  watch: {
-    details_loaded() {
       this.productStore.details_dialog = true;
     },
   },

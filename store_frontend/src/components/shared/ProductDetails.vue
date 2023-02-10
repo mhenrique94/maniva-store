@@ -1,8 +1,10 @@
 <template>
   <v-dialog
+    update:modelValue="closed"
     pa
     transition="dialog-bottom-transition"
     v-model="productStore.details_dialog"
+    @change="dialog = false"
   >
     <v-card>
       <v-card-title
