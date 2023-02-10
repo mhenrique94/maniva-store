@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
     'corsheaders',
-    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -94,8 +93,8 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        # 'HOST': 'postgres',
-        'HOST': 'localhost',
+        'HOST': 'postgres',
+        # 'HOST': 'localhost',
         'PORT': '5432',
     }
 }

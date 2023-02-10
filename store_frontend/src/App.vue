@@ -115,4 +115,10 @@ a:active {
 .modal {
   max-width: 800px;
 }
+@media only screen and (max-width: 400px) {
+  .category-navigation {
+    justify-content: flex-start;
+    padding: 0;
+  }
+}
 </style>

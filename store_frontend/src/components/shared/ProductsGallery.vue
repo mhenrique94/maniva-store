@@ -87,4 +87,15 @@ export default {
   background-color: aqua;
   margin: 48px auto;
 }
+@media only screen and (max-width: 400px) {
+  .gb-products-container {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    justify-content: flex-start;
+  }
+  .gallery-body {
+    border: none;
+    padding: 0;
+  }
+}
 </style>

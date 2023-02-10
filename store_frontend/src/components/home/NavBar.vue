@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar dense color="transparent">
+  <v-toolbar dense color="transparent" class="navbar">
     <router-link to="/" @click="takeMeHome">
       <h1 class="nav-brand">maniva <strong class="bold">store</strong></h1>
     </router-link>
@@ -70,5 +70,14 @@ export default {
 }
 .bold {
   font-weight: 400;
+}
+@media only screen and (max-width: 400px) {
+  .nav-brand {
+    font-size: 18pt;
+    padding: 0;
+  }
+  .navbar {
+    padding-left: 32px;
+  }
 }
 </style>

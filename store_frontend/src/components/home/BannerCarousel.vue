@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-carousel
+      class="carousel"
       height="400"
       hide-delimiter-background
       :show-arrows="false"
@@ -35,16 +36,25 @@ export default {
           source: require("@/assets/img/pexels1.jpg"),
         },
         {
-          text: "Liquida inverno",
+          text: "Liquida inverno 2022 com 99% OFF",
           source: require("@/assets/img/pexels2.jpg"),
         },
         {
           text: "Parcelamento sem juros",
           source: require("@/assets/img/pexels3.jpg"),
         },
-        { text: "slide 4", source: require("@/assets/img/pexels4.jpg") },
-        { text: "slide 5", source: require("@/assets/img/pexels5.jpg") },
-        { text: "slide 6", source: require("@/assets/img/pexels6.jpg") },
+        {
+          text: "Tecidos 100% algodão",
+          source: require("@/assets/img/pexels4.jpg"),
+        },
+        {
+          text: "Outlet com até 95% OFF",
+          source: require("@/assets/img/pexels5.jpg"),
+        },
+        {
+          text: "Conheça nossa coleção verão 2023",
+          source: require("@/assets/img/pexels6.jpg"),
+        },
       ],
     };
   },
@@ -59,5 +69,16 @@ export default {
 .banner-text {
   z-index: 1;
   background-color: white;
+  padding: 0 16px;
+}
+
+@media only screen and (max-width: 400px) {
+  .banner-text {
+    font-size: 20px !important;
+    padding: 0 8px;
+  }
+  .banner-content {
+    align-items: center;
+  }
 }
 </style>
