@@ -89,6 +89,7 @@ class Wishlist(models.Model):
 
 class Cart(models.Model):
     products = models.ManyToManyField(Product)
+    product_size = models.CharField(max_length=5)
     customer = models.OneToOneField(
         Customer, null=True, blank=True, on_delete=models.CASCADE)
     added_date = models.DateTimeField(auto_now_add=True)

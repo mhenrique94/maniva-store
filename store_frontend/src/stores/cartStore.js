@@ -1,30 +1,36 @@
 import { defineStore } from "pinia";
-import api from "../api/api";
 export const useCartStore = defineStore("cart", {
   state: () => {
-    return { cart_items: [], cart_count: 0, dialog: false };
+    return {
+      cart_items: [],
+      cart_count: 0,
+      dialog: false,
+      size_modal: false,
+      cart_total: 0,
+    };
   },
   actions: {
     toggleDialog() {
       this.dialog = this.dialog ? false : true;
     },
     async updateCart(produto) {
+      this.cart_total = 0;
       let result = this.cart_items.find(function (item) {
-        return item.id === produto.id;
+        return item.id === produto.id && item.size === produto.size;
       });
       if (result == undefined) {
         this.cart_items.push(produto);
-        api.updateCart(this.cart_items);
+      } else {
+        this.cart_items = this.cart_items.filter(
+          (each) => each.id != produto.id
+        );
       }
-    },
-  },
-  getters: {
-    getCart: async (state) => {
-      const response = await api.getCart();
-      for (var each of response.data.data[0].attributes.products.data) {
-        state.cart_items.push(each);
+      this.cart_count = this.cart_items.length;
+      for (let item of this.cart_items) {
+        // eslint-disable-next-line no-debugger
+        debugger;
+        this.cart_total += parseFloat(item.price);
       }
-      state.cart_count = state.cart_items.length;
     },
   },
 });

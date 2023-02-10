@@ -5,15 +5,26 @@
       <v-list>
         <v-list-item v-for="item in cart.cart_items" :key="item.id">
           <v-list-item-content class="item">
+            <div>
+              <img :src="item.image.image" class="product_thumbnail" />
+            </div>
             <div class="item-details">
               <v-list-item-title>{{ item.title }}</v-list-item-title>
               <v-list-item-subtitle>{{ item.brand }}</v-list-item-subtitle>
+              <p class="text--disabled">Tamanho: {{ item.size }}</p>
             </div>
-            <div class="item-action">
-              <div>R${{ item.price }}</div>
-              <v-btn>COMPRAR</v-btn>
+            <div class="price-container">
+              R${{
+                item.price
+                  .replace(".", ",")
+                  .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+              }}
             </div>
+            <v-btn variant="plain" @click="updateCart(item)"
+              ><v-icon>mdi-close-circle</v-icon></v-btn
+            >
           </v-list-item-content>
+          <v-divider class="divider" v-if="cart.cart_items.length > 1" />
         </v-list-item>
       </v-list>
       <div v-if="!cart.cart_items.length" class="nothing-to-show">
@@ -23,6 +34,14 @@
           O que está esperando para adicionar um dos nossos produtos incríveis?
         </p>
       </div>
+      <h3 class="cart_total">
+        Total do carrinho: R${{
+          cart.cart_total
+            .toFixed(2)
+            .replace(".", ",")
+            .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+        }}
+      </h3>
     </v-card>
   </v-dialog>
 </template>
@@ -34,6 +53,11 @@ export default {
     return {
       cart: useCartStore(),
     };
+  },
+  methods: {
+    updateCart(item) {
+      this.cart.updateCart(item);
+    },
   },
 };
 </script>
@@ -49,5 +73,28 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+.item {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.product_thumbnail {
+  max-width: 100px;
+  max-height: 100px;
+}
+.price-container {
+  width: 100%;
+  height: 100%;
+  text-align: right;
+  font-size: larger;
+  font-weight: 600;
+}
+.cart_total {
+  padding: 32px;
+  text-align: right;
+}
+.divider {
+  margin: 16px 0;
 }
 </style>

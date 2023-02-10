@@ -52,13 +52,14 @@
       variant="text"
       block
       class="ci-buy-btn"
-      @click="$emit('order', selectedProduct)"
+      @click="updateCart(selectedProduct)"
       >Comprar</v-btn
     >
   </v-card>
 </template>
 <script>
 import { useWishlistStore } from "../../stores/wishlistStore";
+import { useCartStore } from "../../stores/cartStore";
 export default {
   name: "ProductCard",
   props: ["item", "path"],
@@ -66,9 +67,14 @@ export default {
     return {
       selectedProduct: {
         id: this.item.id,
+        title: this.item.title,
+        price: this.item.price,
+        brand: this.item.brand,
+        image: this.item.images[0],
         size: null,
       },
       wishlist: useWishlistStore(),
+      cartStore: useCartStore(),
     };
   },
   methods: {
@@ -78,6 +84,13 @@ export default {
     updateWishlist(item) {
       item.active ? (item.active = false) : (item.active = true);
       this.wishlist.updateWishlist(item);
+    },
+    updateCart(selectedProduct) {
+      if (!this.selectedProduct.size) {
+        this.cartStore.size_modal = true;
+        return;
+      }
+      this.cartStore.updateCart(selectedProduct);
     },
   },
 };

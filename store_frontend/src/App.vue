@@ -10,6 +10,14 @@
     </v-toolbar>
     <WishlistDialog />
     <CheckoutCart />
+    <v-dialog transition="dialog-bottom-transition" v-model="cart.size_modal">
+      <v-card>
+        <v-card-content class="size-modal">
+          <v-icon>mdi-alert</v-icon>
+          <h3>Selecione o tamanho do produto</h3>
+        </v-card-content>
+      </v-card>
+    </v-dialog>
     <router-view
       :dialogStatus="dialogStatus"
       @toggle-dialog="toggleDialog"
@@ -21,6 +29,7 @@
 import NavBar from "./components/home/NavBar.vue";
 import { useWishlistStore } from "./stores/wishlistStore.js";
 import { useProductsStore } from "./stores/productsStore";
+import { useCartStore } from "./stores/cartStore";
 import WishlistDialog from "./components/shared/WishlistDialog.vue";
 import CheckoutCart from "./components/shared/CheckoutCart.vue";
 export default {
@@ -44,6 +53,7 @@ export default {
       ],
       wishlist: useWishlistStore(),
       products: useProductsStore(),
+      cart: useCartStore(),
       dialogStatus: false,
       actual_path: {
         fullPath: null,
@@ -91,6 +101,15 @@ a:active {
 .category-navigation {
   display: flex;
   width: 100%;
+  justify-content: center;
+}
+.size-modal {
+  padding: 32px;
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 </style>
