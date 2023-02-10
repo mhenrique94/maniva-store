@@ -22,9 +22,10 @@
         :src="`${each.image}`"
         cover
         class="gbpci-carousel-item"
+        @click="detail_it"
       ></v-carousel-item>
     </v-carousel>
-    <v-card-title class="gbpc-item-title">{{
+    <v-card-title @click="detail_it" class="gbpc-item-title">{{
       item.title.toLowerCase()
     }}</v-card-title>
     <v-card-subtitle>{{ item.brand }}</v-card-subtitle>
@@ -62,6 +63,7 @@
 <script>
 import { useWishlistStore } from "../../stores/wishlistStore";
 import { useCartStore } from "../../stores/cartStore";
+import { useProductsStore } from "../../stores/productsStore";
 export default {
   name: "ProductCard",
   props: ["item", "path"],
@@ -77,6 +79,8 @@ export default {
       },
       wishlist: useWishlistStore(),
       cartStore: useCartStore(),
+      productStore: useProductsStore(),
+      details_loaded: false,
     };
   },
   methods: {
@@ -94,6 +98,16 @@ export default {
       }
       this.cartStore.updateCart(selectedProduct);
     },
+    detail_it() {
+      this.productStore.detailed_product = this.item;
+      console.log(this.productStore.detailed_product);
+      this.details_loaded = true;
+    },
+  },
+  watch: {
+    details_loaded() {
+      this.productStore.details_dialog = true;
+    },
   },
 };
 </script>
@@ -109,9 +123,13 @@ export default {
 .gbpc-item-title {
   text-transform: capitalize;
   font-size: 12pt;
+  cursor: pointer;
 }
 .gbpci-carousel {
   height: 200px !important;
+}
+.gbpci-carousel-item {
+  cursor: pointer;
 }
 .gbpci-carousel-item > v-img {
   object-fit: cover;
@@ -152,7 +170,6 @@ export default {
   height: 32px;
 }
 .ci-buy-btn {
-  /* background-color: #f2f0f0; */
   font-weight: 600;
   border: solid 1px #f0f0f0;
   border-right-width: 0;

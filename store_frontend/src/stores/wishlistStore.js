@@ -2,7 +2,12 @@ import { defineStore } from "pinia";
 import api from "../api/api";
 export const useWishlistStore = defineStore("wishlist", {
   state: () => {
-    return { wishlist_items: [], wishlist_count: 0, dialog: false };
+    return {
+      wishlist_items: [],
+      wishlist_count: 0,
+      dialog: false,
+      has_itens: false,
+    };
   },
   actions: {
     toggleDialog() {
@@ -30,6 +35,9 @@ export const useWishlistStore = defineStore("wishlist", {
         state.wishlist_items.push(each);
       }
       state.wishlist_count = state.wishlist_items.length;
+      state.wishlist_count > 0
+        ? (state.has_itens = true)
+        : (state.has_itens = false);
     },
   },
 });

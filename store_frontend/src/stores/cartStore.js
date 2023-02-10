@@ -7,6 +7,7 @@ export const useCartStore = defineStore("cart", {
       dialog: false,
       size_modal: false,
       cart_total: 0,
+      has_items: false,
     };
   },
   actions: {
@@ -29,6 +30,7 @@ export const useCartStore = defineStore("cart", {
       for (let item of this.cart_items) {
         this.cart_total += parseFloat(item.price);
       }
+      this.cart_count > 0 ? (this.has_itens = true) : (this.has_itens = false);
     },
   },
 });

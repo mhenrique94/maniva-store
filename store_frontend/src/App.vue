@@ -12,6 +12,7 @@
     </v-toolbar>
     <WishlistDialog class="modal" />
     <CheckoutCart class="modal" />
+    <ProductDetails class="modal" v-if="products.details_dialog" />
     <v-dialog transition="dialog-bottom-transition" v-model="cart.size_modal">
       <v-card>
         <div class="size-modal">
@@ -37,6 +38,7 @@ import { useProductsStore } from "./stores/productsStore";
 import { useCartStore } from "./stores/cartStore";
 import WishlistDialog from "./components/shared/WishlistDialog.vue";
 import CheckoutCart from "./components/shared/CheckoutCart.vue";
+import ProductDetails from "./components/shared/ProductDetails.vue";
 export default {
   name: "App",
   components: {
@@ -44,6 +46,7 @@ export default {
     WishlistDialog,
     CheckoutCart,
     FooTer,
+    ProductDetails,
   },
   data() {
     return {

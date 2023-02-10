@@ -17,7 +17,7 @@
       bordered
       offset-x="10"
       offset-y="10"
-      :model-value="wishlist.wishlist_count"
+      :model-value="wishlist.has_items"
       @click="wishlist.toggleDialog"
     >
       <v-btn icon>
@@ -31,7 +31,7 @@
       bordered
       offset-x="10"
       offset-y="10"
-      :model-value="cart.cart_count"
+      :model-value="cart.has_items"
       @click="cart.toggleDialog"
     >
       <v-btn icon>

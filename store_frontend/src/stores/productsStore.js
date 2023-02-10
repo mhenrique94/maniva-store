@@ -7,6 +7,8 @@ export const useProductsStore = defineStore("products", {
       productsHighlight: [],
       loading: null,
       category: null,
+      detailed_product: {},
+      details_dialog: false,
     };
   },
   getters: {
