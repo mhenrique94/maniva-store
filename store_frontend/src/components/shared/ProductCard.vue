@@ -29,7 +29,9 @@
     }}</v-card-title>
     <v-card-subtitle>{{ item.brand }}</v-card-subtitle>
     <div class="carousel-item-price-container">
-      R$<strong>{{ item.price }}</strong>
+      R$<strong>{{
+        item.price.replace(".", ",").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+      }}</strong>
     </div>
     <div class="carousel-item-sizes-container">
       <div class="cisc-labels">Tamanhos</div>

@@ -6,12 +6,20 @@
         <v-list-item v-for="item in wishlist.wishlist_items" :key="item.id">
           <v-list-item-content class="item">
             <div class="item-details">
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title
+                ><strong>{{ item.title }}</strong></v-list-item-title
+              >
               <v-list-item-subtitle>{{ item.brand }}</v-list-item-subtitle>
             </div>
             <div class="item-action">
-              <div>R${{ item.price }}</div>
-              <v-btn>COMPRAR</v-btn>
+              <div>
+                R${{
+                  item.price
+                    .replace(".", ",")
+                    .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+                }}
+              </div>
+              <v-btn @click="updateCart(item)">COMPRAR</v-btn>
             </div>
           </v-list-item-content>
         </v-list-item>
@@ -21,13 +29,23 @@
 </template>
 <script>
 import { useWishlistStore } from "../../stores/wishlistStore";
+import { useCartStore } from "../../stores/cartStore";
 
 export default {
   name: "WishlistDialog",
   data() {
     return {
       wishlist: useWishlistStore(),
+      cartStore: useCartStore(),
     };
+  },
+  methods: {
+    updateCart(selectedProduct) {
+      if (!this.selectedProduct.size) {
+        return;
+      }
+      this.cartStore.updateCart(selectedProduct);
+    },
   },
 };
 </script>

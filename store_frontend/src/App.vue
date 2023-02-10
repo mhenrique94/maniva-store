@@ -8,8 +8,8 @@
         </v-list-item>
       </v-list>
     </v-toolbar>
-    <WishlistDialog />
-    <CheckoutCart />
+    <WishlistDialog class="modal" />
+    <CheckoutCart class="modal" />
     <v-dialog transition="dialog-bottom-transition" v-model="cart.size_modal">
       <v-card>
         <v-card-content class="size-modal">
@@ -111,5 +111,8 @@ a:active {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.modal {
+  max-width: 800px;
 }
 </style>

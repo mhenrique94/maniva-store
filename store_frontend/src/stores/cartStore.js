@@ -27,8 +27,6 @@ export const useCartStore = defineStore("cart", {
       }
       this.cart_count = this.cart_items.length;
       for (let item of this.cart_items) {
-        // eslint-disable-next-line no-debugger
-        debugger;
         this.cart_total += parseFloat(item.price);
       }
     },
