@@ -1,6 +1,5 @@
 import json
 from django.shortcuts import render
-from django.views.generic import TemplateView
 from django.http.response import JsonResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -9,11 +8,6 @@ from store.serializers import ProductSerializer, ImageSerializer, WishlistSerial
 
 
 # Create your views here.
-
-
-class StoreHome(TemplateView):
-    template_name = "index.html"
-
 
 @api_view(['GET'])
 def product_detail(request, pk):

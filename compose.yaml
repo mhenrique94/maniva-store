@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d postgres -U postgres" ]
+      test: ["CMD-SHELL", "pg_isready -d postgres -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -17,7 +17,7 @@ services:
     restart: on-failure
 
   backend:
-  # aqui ele constroi a imagem considerando o dockerfile
+    # aqui ele constroi a imagem considerando o dockerfile
     build: .
     command: sh -c "python manage.py migrate && python manage.py runserver"
     ports:
@@ -27,4 +27,18 @@ services:
         condition: service_healthy
     volumes:
       - .:/store_backend
+    restart: on-failure
+
+  frontend:
+    build:
+      context: store_frontend
+      target: development
+    ports:
+      - 8080:8080
+    depends_on:
+      backend:
+        condition: service_started
+    volumes:
+      - /store_frontend
+      - /store_frontend/node_modules
     restart: on-failure
