@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
+
+APP_NAME = os.environ.get("FLY_APP_NAME")
+ALLOWED_HOSTS = [f"{APP_NAME}.fly.dev"]
+DATABASE_URL = os.environ['DATABASE_URL']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g-xx3vq2%^=i0o67o^^9uef%wwp2qvaab%dmc%umg7pc-%r=5g'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'maniva-store-back.fly.dev']
+CSRF_TRUSTED_ORIGINS = ['https://maniva-store-back.fly.dev']
 
 
 # Application definition
@@ -87,17 +94,24 @@ WSGI_APPLICATION = 'store_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'postgres',
-        # 'HOST': 'localhost',
-        'PORT': '5432',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'postgres',
+            # 'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
-}
+if APP_NAME:
+    DATABASES = {
+       'default': dj_database_url.config(
+           default=DATABASE_URL
+       )
+    }
 
 
 # Password validation
@@ -143,3 +157,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+

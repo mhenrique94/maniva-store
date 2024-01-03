@@ -1,1 +1,3 @@
-data/
+fly.toml
+.git/
+*.sqlite3
