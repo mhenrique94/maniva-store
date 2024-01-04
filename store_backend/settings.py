@@ -16,7 +16,6 @@ import dj_database_url
 
 APP_NAME = os.environ.get("FLY_APP_NAME")
 ALLOWED_HOSTS = [f"{APP_NAME}.fly.dev"]
-DATABASE_URL = os.environ['DATABASE_URL']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -101,12 +100,13 @@ if DEBUG:
             'NAME': 'postgres',
             'USER': 'postgres',
             'PASSWORD': 'postgres',
-            'HOST': 'postgres',
-            # 'HOST': 'localhost',
+            # 'HOST': 'postgres',
+            'HOST': 'localhost',
             'PORT': '5432',
         }
     }
-if APP_NAME:
+elif APP_NAME:
+    DATABASE_URL = os.environ['DATABASE_URL']
     DATABASES = {
        'default': dj_database_url.config(
            default=DATABASE_URL
@@ -149,9 +149,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
