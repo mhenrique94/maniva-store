@@ -31,14 +31,14 @@
 </template>
 
 <script>
-import NavBar from "./components/home/NavBar.vue";
-import FooTer from "./components/home/FooTer.vue";
-import { useWishlistStore } from "./stores/wishlistStore.js";
-import { useProductsStore } from "./stores/productsStore";
-import { useCartStore } from "./stores/cartStore";
-import WishlistDialog from "./components/shared/WishlistDialog.vue";
-import CheckoutCart from "./components/shared/CheckoutCart.vue";
-import ProductDetails from "./components/shared/ProductDetails.vue";
+import NavBar from "@/components/home/NavBar.vue";
+import FooTer from "@/components/home/FooTer.vue";
+import { useWishlistStore } from "@/stores/wishlistStore.js";
+import { useProductsStore } from "@/stores/productsStore";
+import { useCartStore } from "@/stores/cartStore";
+import WishlistDialog from "@/components/shared/WishlistDialog.vue";
+import CheckoutCart from "@/components/shared/CheckoutCart.vue";
+import ProductDetails from "@/components/shared/ProductDetails.vue";
 export default {
   name: "App",
   components: {

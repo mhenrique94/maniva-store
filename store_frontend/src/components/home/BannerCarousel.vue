@@ -19,6 +19,12 @@
   </div>
 </template>
 <script>
+import pexels1 from "@/assets/img/pexels1.jpg";
+import pexels2 from "@/assets/img/pexels2.jpg";
+import pexels3 from "@/assets/img/pexels3.jpg";
+import pexels4 from "@/assets/img/pexels4.jpg";
+import pexels5 from "@/assets/img/pexels5.jpg";
+import pexels6 from "@/assets/img/pexels6.jpg";
 export default {
   name: "BannerCarousel",
   data() {
@@ -26,27 +32,27 @@ export default {
       slides: [
         {
           text: "Calçados com 30% OFF",
-          source: require("@/assets/img/pexels1.jpg"),
+          source: pexels1,
         },
         {
           text: "Liquida inverno 2022 com 99% OFF",
-          source: require("@/assets/img/pexels2.jpg"),
+          source: pexels2,
         },
         {
           text: "Parcelamento sem juros",
-          source: require("@/assets/img/pexels3.jpg"),
+          source: pexels3,
         },
         {
           text: "Tecidos 100% algodão",
-          source: require("@/assets/img/pexels4.jpg"),
+          source: pexels4,
         },
         {
           text: "Outlet com até 95% OFF",
-          source: require("@/assets/img/pexels5.jpg"),
+          source: pexels5,
         },
         {
           text: "Conheça nossa coleção verão 2023",
-          source: require("@/assets/img/pexels6.jpg"),
+          source: pexels6,
         },
       ],
     };

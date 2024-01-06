@@ -21,9 +21,9 @@
   </v-toolbar>
 </template>
 <script>
-import { useWishlistStore } from "../../stores/wishlistStore";
-import { useProductsStore } from "../../stores/productsStore";
-import { useCartStore } from "../../stores/cartStore";
+import { useWishlistStore } from "@/stores/wishlistStore";
+import { useProductsStore } from "@/stores/productsStore";
+import { useCartStore } from "@/stores/cartStore";
 export default {
   name: "NavBar",
   data() {

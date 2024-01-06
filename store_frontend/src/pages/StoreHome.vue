@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import { useProductsStore } from "../stores/productsStore";
+import { useProductsStore } from "@/stores/productsStore";
 
-import BannerCarousel from "../components/home/BannerCarousel.vue";
-import CampaignCarousel from "../components/home/CampaignCarousel.vue";
-import ProductsGallery from "../components/shared/ProductsGallery.vue";
+import BannerCarousel from "@/components/home/BannerCarousel.vue";
+import CampaignCarousel from "@/components/home/CampaignCarousel.vue";
+import ProductsGallery from "@/components/shared/ProductsGallery.vue";
 
 export default {
   name: "StoreHome",

@@ -9,6 +9,9 @@
   </div>
 </template>
 <script>
+import banner23 from "@/assets/img/23_banner638114659403714406.webp";
+import banner24 from "@/assets/img/24_banner638114660043609846.webp";
+import banner25 from "@/assets/img/25_banner638114657226160786.webp";
 export default {
   name: "CampaignCarousel",
   data() {
@@ -16,15 +19,15 @@ export default {
       banners: [
         {
           text: "Calçados com 30% OFF",
-          source: require("@/assets/img/23_banner638114659403714406.webp"),
+          source: banner23,
         },
         {
           text: "Liquida inverno 2022 com 99% OFF",
-          source: require("@/assets/img/24_banner638114660043609846.webp"),
+          source: banner24,
         },
         {
           text: "Parcelamento sem juros",
-          source: require("@/assets/img/25_banner638114657226160786.webp"),
+          source: banner25,
         },
       ],
     };

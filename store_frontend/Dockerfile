@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "--http=0.0.0.0:8080"]

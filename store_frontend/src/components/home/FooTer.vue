@@ -42,25 +42,35 @@
   </div>
 </template>
 <script>
+import PNB from "@/assets/img/pnb-card.svg";
+import PNBD from "@/assets/img/pnb-digital.svg";
+import visa from "@/assets/img/visa.svg";
+import mastercard from "@/assets/img/mastercard.svg";
+import elo from "@/assets/img/elo.svg";
+import american from "@/assets/img/american-express.svg";
+import pix from "@/assets/img/pix.svg";
+import google from "@/assets/img/googlePlay.webp";
+import appstore from "@/assets/img/appStore.webp";
+
 export default {
   name: "FooTer",
   data() {
     return {
       apps_img: [
-        { alt: "google play", image: require("@/assets/img/googlePlay.webp") },
-        { alt: "appstore", image: require("@/assets/img/appStore.webp") },
+        { alt: "google play", image: google },
+        { alt: "appstore", image: appstore },
       ],
       payments_methods: [
-        { alt: "PNB", image: require("@/assets/img/pnb-card.svg") },
-        { alt: "PNB", image: require("@/assets/img/pnb-digital.svg") },
-        { alt: "visa", image: require("@/assets/img/visa.svg") },
-        { alt: "mastercard", image: require("@/assets/img/mastercard.svg") },
-        { alt: "elo", image: require("@/assets/img/elo.svg") },
+        { alt: "PNB", image: PNB },
+        { alt: "PNBD", image: PNBD },
+        { alt: "visa", image: visa },
+        { alt: "mastercard", image: mastercard },
+        { alt: "elo", image: elo },
         {
           alt: "american-express",
-          image: require("@/assets/img/american-express.svg"),
+          image: american,
         },
-        { alt: "pix", image: require("@/assets/img/pix.svg") },
+        { alt: "pix", image: pix },
       ],
     };
   },
