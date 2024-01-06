@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http.response import JsonResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
-from store.models import *
+from store.models import Category, Image, Product, Wishlist
 from store.serializers import ProductSerializer, ImageSerializer, WishlistSerializer
 
 
@@ -63,7 +63,7 @@ def wishlist(request, pk):
             products_ids.append(each['id'])
         de_para = wishlist.products.values_list('id', flat=True)
         for id in de_para:
-            if not id in products_ids:
+            if id not in products_ids:
                 wishlist.products.remove(id)
         prod_to_save = Product.objects.filter(id__in=products_ids)
         for prod in prod_to_save:

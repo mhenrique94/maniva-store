@@ -60,8 +60,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 CORS_ORIGIN_ALLOW_ALL = False
+
+FLY_APP_FRONT_KEY = os.environ.get("FLY_APP_FRONT_KEY", 'http://localhost:5173')
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
+    FLY_APP_FRONT_KEY
 )
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
@@ -93,13 +96,14 @@ WSGI_APPLICATION = 'store_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 if DEBUG:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
+            'ENGINE': os.environ.get("DB_ENGINE"),
+            'NAME': os.environ.get("DB_NAME"),
+            'USER': os.environ.get("DB_USER"),
+            'PASSWORD': os.environ.get("DB_PASSWORD"),
             # 'HOST': 'postgres',
             'HOST': 'localhost',
             'PORT': '5432',

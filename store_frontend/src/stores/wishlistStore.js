@@ -31,10 +31,14 @@ export const useWishlistStore = defineStore("wishlist", {
   getters: {
     getWishlist: async (state) => {
       const response = await api.getWishlist();
-      for (let each of response.data[0].products) {
-        state.wishlist_items.push(each);
+      const products = response.data[0]?.products;
+
+      if (products) {
+        for (let each of products) {
+          state.wishlist_items.push(each);
+        }
+        state.wishlist_count = state.wishlist_items.length;
       }
-      state.wishlist_count = state.wishlist_items.length;
     },
   },
 });
